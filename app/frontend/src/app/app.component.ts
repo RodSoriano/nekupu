@@ -10,4 +10,12 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'frontend';
+  async makeHttpCall() {
+    const res = await fetch('/api')
+
+    const text = await res.json()
+    console.log(text);
+
+    this.title = text.msg
+  }
 }

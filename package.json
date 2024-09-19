@@ -4,14 +4,17 @@
   "description": "Nekepu monorepo",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "dev": "npm run --workspace app/frontend start & npm run --workspace app/api start:dev",
+    "build": "npx turbo run build",
+    "start": "node app/api/dist/main.js"
   },
   "author": "Rodrigo Soriano and Bryan Portillo",
   "license": "MIT",
   "devDependencies": {
     "turbo": "^2.1.2"
   },
-   "workspaces": [
+  "packageManager": "npm@10.8.2",
+  "workspaces": [
     "app/*"
   ]
 }
