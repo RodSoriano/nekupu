@@ -1,10 +1,10 @@
 {
   "name": "nekupu",
   "version": "1.0.0",
-  "description": "Nekepu monorepo",
+  "description": "Nekepu Monorepo",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run --workspace app/frontend start & npm run --workspace app/api start:dev",
+    "dev": "npm run --workspace frontend start & npm run --workspace api start:dev",
     "build": "npx turbo run build",
     "start": "node app/api/dist/main.js"
   },
