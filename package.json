@@ -1,0 +1,14 @@
+{
+  "name": "nekupu",
+  "version": "1.0.0",
+  "description": "Nekepu monorepo",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Rodrigo Soriano and Bryan Portillo",
+  "license": "MIT",
+  "devDependencies": {
+    "turbo": "^2.1.2"
+  }
+}
