@@ -52,6 +52,7 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+**/mysql
 
 # dotenv environment variable files
 .env

@@ -17,7 +17,49 @@ To get started, you'll need to install the dependencies for both the frontend an
 npm install
 ```
 
-This will install all the dependencies defined in the `package.json` file and setup the workspaces.
+This will install all the dependencies defined in the `package.json` file and set up the workspaces.
+
+## Setup Environment Variables
+
+Before running the application, you need to configure the environment variables.
+
+1. **Copy the example environment file**: There is an `env.example` file in the root directory. You need to copy this file and rename it to `.env`.
+
+   ```bash
+   cp env.example .env
+   ```
+
+2. **Set the correct values**: Open the `.env` file and update the environment variables with the correct values for your local environment, such as database credentials, ports, and secrets.
+
+3. **Generate `jwt_secret`**: If you need to generate a secure `jwt_secret`, you can use the following command and copy the result from the console:
+
+   ```bash
+   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+   ```
+
+## Running the Application with Docker
+
+Once the dependencies are installed and the environment variables are configured, you can use Docker to set up and run the services in containers. Follow these steps:
+
+1. **Ensure Docker is installed**: Make sure Docker and Docker Compose are installed and running on your machine.
+
+   [Install Docker](https://docs.docker.com/get-docker/) if needed.
+
+2. **Build and Start Containers**: Run the following command to start the services in Docker:
+
+   ```bash
+   docker compose up
+   ```
+
+   This command will build and start the containers for both the frontend and backend. You can view the logs to ensure everything is running correctly.
+
+3. **Access the Application**: Once the containers are up, the frontend and backend will be available at the respective ports (check your Docker Compose configuration for details).
+
+4. **Stop the Containers**: To stop the Docker containers, press `CTRL+C` or run:
+
+   ```bash
+   docker compose down
+   ```
 
 ## Scripts
 
@@ -74,14 +116,13 @@ npm run build
 
 2. **Start the Backend**
 
-After building the project, start the NestJS backend application. This can be done by running the following command:
+   After building the project, start the NestJS backend application. This can be done by running the following command:
 
 ```bash
 npm run start
 ```
 
-This command will execute the compiled backend application from app/api/dist/main.js. Make sure your environment is set up with the necessary configurations and environment variables for production. This will also get the frontend running since it is served as a static asset for the backend.
-
+This command will execute the compiled backend application from `app/api/dist/main.js`. Make sure your environment is set up with the necessary configurations and environment variables for production. This will also get the frontend running since it is served as a static asset for the backend.
 
 ## License
 
