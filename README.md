@@ -19,7 +19,9 @@ npm install
 
 This will install all the dependencies defined in the `package.json` file and set up the workspaces.
 
-## Setup Environment Variables
+### API Repository
+
+#### Setup Environment Variables
 
 Before running the application, you need to configure the environment variables.
 
@@ -37,7 +39,7 @@ Before running the application, you need to configure the environment variables.
    node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
    ```
 
-## Running the Application with Docker
+#### Running the Application with Docker
 
 Once the dependencies are installed and the environment variables are configured, you can use Docker to set up and run the services in containers. Follow these steps:
 
