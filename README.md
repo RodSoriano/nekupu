@@ -21,6 +21,13 @@ This will install all the dependencies defined in the `package.json` file and se
 
 ### API Repository
 
+First we need to enter the `api` repository, from the root of the project, we do.
+
+```
+cd app/api/
+
+```
+
 #### Setup Environment Variables
 
 Before running the application, you need to configure the environment variables.
@@ -28,12 +35,12 @@ Before running the application, you need to configure the environment variables.
 1. **Copy the example environment file**: There is an `env.example` file in the root directory. You need to copy this file and rename it to `.env`.
 
    ```bash
-   cp env.example .env
+   cp .env.example .env
    ```
 
 2. **Set the correct values**: Open the `.env` file and update the environment variables with the correct values for your local environment, such as database credentials, ports, and secrets.
 
-3. **Generate `jwt_secret`**: If you need to generate a secure `jwt_secret`, you can use the following command and copy the result from the console:
+3. **Generate `jwt_secret`**: If you need to generate a secure `jwt_secret`, you can use the following command inside the `api` and copy the result from the console:
 
    ```bash
    node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
@@ -62,6 +69,10 @@ Once the dependencies are installed and the environment variables are configured
    ```bash
    docker compose down
    ```
+
+### Front-End Repository
+
+_Still under maintenance..._
 
 ## Scripts
 
