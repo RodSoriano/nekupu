@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinTable, ManyToMany } from 'typeorm';
 import { User } from './user.entity';
+import { Category } from './category.entity';
 
 @Entity()
 export class Post {
@@ -20,4 +21,18 @@ export class Post {
 
   @ManyToOne(() => User, (user) => user.posts)
   user: User;
+
+  @ManyToMany((type) => Category)
+  @JoinTable({
+      name: 'category_posts',
+      joinColumn: {
+          name: 'category',
+          referencedColumnName: 'id'
+      },
+      inverseJoinColumn: {
+          name: 'post',
+          referencedColumnName: 'id'
+      }
+  })
+  categories: Category[];
 }
