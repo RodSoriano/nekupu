@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "npm run --workspace frontend start & npm run --workspace api start:dev",
     "build": "npx turbo run build",
-    "start": "node app/api/dist/main.js"
+    "start": "npm run --workspace api start"
   },
   "author": "Rodrigo Soriano and Bryan Portillo",
   "license": "MIT",
