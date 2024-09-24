@@ -1,3 +1,5 @@
+import { join } from 'path';
+
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -6,16 +8,15 @@ import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 
 import { JoiValidationSchema } from './config/joi-validation.config';
-import { envConfiguration } from './config/env.config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { join } from 'path';
-import { UserModule } from './user/user.module';
 import { CategoryModule } from './category/category.module';
 import { CommentModule } from './comment/comment.module';
 import { ContactModule } from './contact/contact.module';
 import { MessageModule } from './message/message.module';
+import { envConfiguration } from './config/env.config';
+import { AppController } from './app.controller';
+import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -49,17 +50,11 @@ import { PostModule } from './post/post.module';
         limit: 100, // Maximum number of requests allowed within the TTL per IP address
       },
     ]),
-
     UserModule,
-
     CategoryModule,
-
     CommentModule,
-
     ContactModule,
-
     MessageModule,
-
     PostModule,
   ],
 
