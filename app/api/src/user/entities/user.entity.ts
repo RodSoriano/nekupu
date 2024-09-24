@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+
 import { Contact } from '../../contact/entities/contact.entity';
 import { Post } from '../../post/entities/post.entity';
 
