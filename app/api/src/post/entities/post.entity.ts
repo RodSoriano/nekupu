@@ -6,8 +6,8 @@ import {
   JoinTable,
   ManyToMany,
 } from 'typeorm';
-import { User } from './user.entity';
-import { Category } from './category.entity';
+import { User } from '../../user/entities/user.entity';
+import { Category } from '../../category/entities/category.entity';
 
 @Entity()
 export class Post {
@@ -29,7 +29,7 @@ export class Post {
   @ManyToOne(() => User, (user) => user.posts)
   user: User;
 
-  @ManyToMany((type) => Category)
+  @ManyToMany(() => Category)
   @JoinTable({
     name: 'category_posts',
     joinColumn: {
