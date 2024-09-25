@@ -110,6 +110,25 @@ npm run start
 - **Usage**: This script runs the compiled backend application from the `app/api/dist/main.js` file.
 - **Details**: This command assumes that the backend application has already been built and is ready for production deployment.
 
+### `migration:run`
+
+```bash
+npm run --workspace api migration:run
+```
+
+- **Description**: Executes database migrations for the API, ensuring that all required tables are created.
+- **Usage**: This script runs the necessary migrations to set up the database schema, ensuring the app operates with the correct table structure.
+
+### `migration:generate`
+
+```bash
+npm run --workspace api migration:generate -- database/migrations/migration-name
+```
+
+- **Description**: Generates a new migration file based on the current state of your entities.
+- **Usage**: This script automatically creates a new migration in the specified path (`database/migrations/migration-name`) by comparing the current database schema with your entity definitions, capturing any necessary changes.
+
+
 ## Development Setup
 
 To set up the development environment:
