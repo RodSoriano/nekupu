@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 
+import { typeOrmConfiguration } from 'database/config/typeorm.config';
 import { JoiValidationSchema } from './config/joi-validation.config';
 import { CategoryModule } from './category/category.module';
 import { CommentModule } from './comment/comment.module';
@@ -32,16 +33,7 @@ import { AppService } from './app.service';
     }),
 
     // TypeOrmModule configures TypeORM with MySQL database connection
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DB_HOSTNAME,
-      port: +process.env.DB_PORT,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      autoLoadEntities: true,
-      synchronize: false,
-    }),
+    TypeOrmModule.forRoot(typeOrmConfiguration),
 
     // ThrottlerModule configures rate-limiting to prevent abuse of the API
     ThrottlerModule.forRoot([
