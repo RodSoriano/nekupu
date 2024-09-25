@@ -17,8 +17,6 @@ export const typeOrmConfiguration: DataSourceOptions = {
   migrations: [__dirname + '/../../database/migrations/*.js'],
 };
 
-console.log(typeOrmConfiguration.entities);
-
 const dataSource = new DataSource(typeOrmConfiguration);
 
 export default dataSource;
