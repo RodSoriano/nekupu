@@ -8,13 +8,12 @@ ConfigModule.forRoot({
   envFilePath: '.env',
 });
 
-export const typeOrmConfigurationForSeeder = {
-  ...typeOrmConfiguration,
-  seeds: [InitSeeder],
-};
+export const typeOrmConfigurationForSeeder: DataSourceOptions & SeederOptions =
+  {
+    ...typeOrmConfiguration,
+    seeds: [InitSeeder],
+  };
 
-const dataSource = new DataSource(
-  typeOrmConfigurationForSeeder as DataSourceOptions & SeederOptions,
-);
+const dataSource = new DataSource(typeOrmConfigurationForSeeder);
 
 export default dataSource;

@@ -1,6 +1,7 @@
 import { hash } from 'bcrypt';
 import { User } from '../../src/user/entities/user.entity';
 import { DataSource } from 'typeorm';
+
 import { Seeder, SeederFactoryManager } from 'typeorm-extension';
 
 export default class UserSeeder implements Seeder {
@@ -9,6 +10,7 @@ export default class UserSeeder implements Seeder {
     factoryManager: SeederFactoryManager,
   ): Promise<any> {
     const repository = dataSource.getRepository(User);
+    const itemsToBeGenerated = 40;
 
     const data: Partial<User> = {
       firstName: 'admin',
@@ -32,6 +34,6 @@ export default class UserSeeder implements Seeder {
     // await userFactory.save();
 
     // Insert many records in database.
-    await userFactory.saveMany(40);
+    await userFactory.saveMany(itemsToBeGenerated);
   }
 }
