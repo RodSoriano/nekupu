@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { CommentTypes } from '../enums/comment-type.enum';
 
 @Entity()
 export class Comment {
@@ -12,5 +13,5 @@ export class Comment {
   commentableId: number;
 
   @Column()
-  commentableType: string;
+  commentableType: CommentTypes;
 }
