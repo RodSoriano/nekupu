@@ -1,7 +1,7 @@
-import { hash } from 'bcrypt';
-import { User } from '../../src/user/entities/user.entity';
-
 import { faker } from '@faker-js/faker';
+import { hash } from 'bcrypt';
+
+import { User } from '../../src/user/entities/user.entity';
 
 export function userFactory() {
   return {
@@ -19,7 +19,7 @@ export function userFactory() {
 
       return user;
     },
-    async saveMany(amountToGenerate: number): Promise<User[]> {
+    async getMany(amountToGenerate: number): Promise<User[]> {
       const users: User[] = [];
       for (let index = 0; index < amountToGenerate; index++) {
         users.push(await this.run());

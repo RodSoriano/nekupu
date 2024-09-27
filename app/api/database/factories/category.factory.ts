@@ -1,27 +1,42 @@
+import { faker } from '@faker-js/faker';
+
 import { Category } from '../../src/category/entities/category.entity';
-import { setSeederFactory } from 'typeorm-extension';
 
-export default setSeederFactory(Category, async (faker) => {
-  const category = new Category();
+export function categoryFactory() {
+  return {
+    run(): Category {
+      const category = new Category();
 
-  const categories = [
-    'Technology',
-    'Health & Wellness',
-    'Travel',
-    'Education',
-    'Lifestyle',
-    'Business & Finance',
-    'Entertainment',
-    'Food & Drink',
-    'Sports',
-    'Environment',
-    'Parenting & Family',
-    'Art & Design',
-  ];
+      const categories = [
+        'Technology',
+        'Health & Wellness',
+        'Travel',
+        'Education',
+        'Lifestyle',
+        'Business & Finance',
+        'Entertainment',
+        'Food & Drink',
+        'Sports',
+        'Environment',
+        'Parenting & Family',
+        'Art & Design',
+      ];
 
-  const categoryRandom = faker.helpers.arrayElement(categories);
+      const categoryRandom = faker.helpers.arrayElement(categories);
 
-  category.name = categoryRandom;
+      category.name = categoryRandom;
 
-  return category;
-});
+      return category;
+    },
+    getMany(amountToGenerate: number): Category[] {
+      const categories: Category[] = [];
+      for (let index = 0; index < amountToGenerate; index++) {
+        categories.push(this.run());
+      }
+      return categories;
+    },
+    getOne() {
+      return this.run();
+    },
+  };
+}

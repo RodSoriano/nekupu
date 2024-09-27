@@ -30,6 +30,6 @@ export const userSeeder = async (
   }
 
   // Insert many records in database.
-  const users = await userFactory().saveMany(amountToGenerate);
+  const users = await userFactory().getMany(amountToGenerate);
   await repository.save(users);
 };
