@@ -1,13 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+// This model will be loaded in memory as an option
 
-@Entity()
 export class Message {
-  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
   content: string;
 
-  @Column()
   read: boolean;
+
+  userId: number;
 }
