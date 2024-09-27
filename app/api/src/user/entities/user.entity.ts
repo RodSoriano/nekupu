@@ -1,26 +1,32 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToMany } from 'typeorm';
 
+import { BaseEntity } from '../../common/entities/base-entity.entity';
 import { Contact } from '../../contact/entities/contact.entity';
 import { Post } from '../../post/entities/post.entity';
 
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
-
-  @Column()
+export class User extends BaseEntity {
+  @Column('varchar', {
+    nullable: false,
+  })
   firstName: string;
 
-  @Column()
+  @Column('varchar', {
+    nullable: false,
+  })
   lastName: string;
 
-  @Column()
+  @Column('varchar', {
+    nullable: false,
+  })
   email: string;
 
-  @Column()
+  @Column('varchar', {
+    nullable: false,
+  })
   password: string;
 
-  @Column({
+  @Column('varchar', {
     nullable: true,
   })
   picture: string;

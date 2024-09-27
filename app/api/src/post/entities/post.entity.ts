@@ -1,34 +1,29 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  ManyToOne,
-  JoinTable,
-  ManyToMany,
-} from 'typeorm';
+import { Entity, Column, ManyToOne, JoinTable, ManyToMany } from 'typeorm';
 
+import { BaseEntity } from '../../common/entities/base-entity.entity';
 import { Category } from '../../category/entities/category.entity';
 import { User } from '../../user/entities/user.entity';
 
 @Entity()
-export class Post {
-  @PrimaryGeneratedColumn()
-  id: number;
-
+export class Post extends BaseEntity {
   @Column({
     default: true,
   })
   active: boolean;
 
-  @Column({
+  @Column('varchar', {
     nullable: true,
   })
-  image: string;
+  picture: string;
 
-  @Column()
+  @Column('varchar', {
+    nullable: false,
+  })
   title: string;
 
-  @Column()
+  @Column('varchar', {
+    nullable: false,
+  })
   content: string;
 
   @ManyToOne(() => User, (user) => user.posts)
