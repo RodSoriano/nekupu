@@ -12,9 +12,9 @@ export const typeOrmConfiguration: DataSourceOptions = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  entities: [__dirname + '/../../src/**/*.entity.js'],
+  entities: [__dirname + '/../../src/**/*.entity{.ts,.js}'],
   migrationsTableName: 'migrations',
-  migrations: [__dirname + '/../../database/migrations/*.js'],
+  migrations: [__dirname + '/../../database/migrations/*{.ts,.js}'],
 };
 
 const dataSource = new DataSource(typeOrmConfiguration);

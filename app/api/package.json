@@ -22,7 +22,7 @@
     "migration:generate": "npm run typeorm -- migration:generate",
     "migration:run": "npm run typeorm -- migration:run",
     "migration:revert": "npm run typeorm -- migration:revert",
-    "seed": "npm run build && typeorm-extension seed:run -d dist/database/config/seeder.config.ts"
+    "seed": "npm run build && ts-node database/seeder/init.seeder.ts"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -46,10 +46,10 @@
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
-    "typeorm": "^0.3.20",
-    "typeorm-extension": "3.6.1"
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.0.3",
     "@nestjs/cli": "^10.0.0",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/testing": "^10.0.0",

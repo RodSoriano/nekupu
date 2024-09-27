@@ -1,15 +1,14 @@
-import userFactory from '../factories/user.factory';
-import { DataSource } from 'typeorm';
-import { Seeder, runSeeders } from 'typeorm-extension';
-import UserSeeder from './user.seeder';
-import CategorySeeder from './category.seeder';
-import categoryFactory from 'database/factories/category.factory';
+import dataSource from '../config/typeorm.config';
+import { userSeeder } from './user.seeder';
 
-export default class InitSeeder implements Seeder {
-  public async run(dataSource: DataSource): Promise<any> {
-    await runSeeders(dataSource, {
-      seeds: [UserSeeder, CategorySeeder],
-      factories: [userFactory, categoryFactory],
-    });
-  }
-}
+const initSeeder = async (): Promise<void> => {
+  await dataSource.initialize();
+
+  const usersToCreate = 40;
+  await userSeeder(dataSource, usersToCreate);
+
+  await dataSource.destroy();
+  console.log('Seed completed! 🎉');
+};
+
+initSeeder();
