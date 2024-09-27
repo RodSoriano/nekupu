@@ -26,5 +26,8 @@ export function userFactory() {
       }
       return users;
     },
+    async getOne(): Promise<User[]> {
+      return await this.run();
+    },
   };
 }

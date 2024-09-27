@@ -1,5 +1,6 @@
-import dataSource from '../config/typeorm.config';
 import { categorySeeder } from './category.seeder';
+import dataSource from '../config/typeorm.config';
+import { postSeeder } from './post.seeder';
 import { userSeeder } from './user.seeder';
 
 const initSeeder = async (): Promise<void> => {
@@ -12,6 +13,10 @@ const initSeeder = async (): Promise<void> => {
   // Categories
   const categoriesToCreate = 12;
   await categorySeeder(dataSource, categoriesToCreate);
+
+  // Post
+  const postsToCreate = 10;
+  await postSeeder(dataSource, postsToCreate);
 
   await dataSource.destroy();
   console.log('Seed completed! 🎉');

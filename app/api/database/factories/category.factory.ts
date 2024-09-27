@@ -35,7 +35,7 @@ export function categoryFactory() {
       }
       return categories;
     },
-    getOne() {
+    getOne(): Category {
       return this.run();
     },
   };

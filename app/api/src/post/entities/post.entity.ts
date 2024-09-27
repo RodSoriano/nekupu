@@ -15,10 +15,14 @@ export class Post {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({
+    default: true,
+  })
   active: boolean;
 
-  @Column()
+  @Column({
+    nullable: true,
+  })
   image: string;
 
   @Column()
