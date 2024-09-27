@@ -1,5 +1,6 @@
 import { categorySeeder } from './category.seeder';
 import dataSource from '../config/typeorm.config';
+import { commentSeeder } from './comment.seeder';
 import { postSeeder } from './post.seeder';
 import { userSeeder } from './user.seeder';
 
@@ -17,6 +18,10 @@ const initSeeder = async (): Promise<void> => {
   // Post
   const postsToCreate = 10;
   await postSeeder(dataSource, postsToCreate);
+
+  // Comment
+  const commentsToCreate = 10;
+  await commentSeeder(dataSource, commentsToCreate);
 
   await dataSource.destroy();
   console.log('Seed completed! 🎉');
