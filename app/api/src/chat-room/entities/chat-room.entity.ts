@@ -1,4 +1,4 @@
-import { Entity, OneToMany, OneToOne } from 'typeorm';
+import { Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
 
 import { BaseEntity } from '../../common/entities/base-entity.entity';
 import { Message } from '../../message/entities/message.entity';
@@ -10,5 +10,6 @@ export class ChatRoom extends BaseEntity {
   messages: Message[];
 
   @OneToOne(() => User, (user) => user.chatRoom)
+  @JoinColumn()
   user: User;
 }
