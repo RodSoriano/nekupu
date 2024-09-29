@@ -19,6 +19,7 @@ import { AppController } from './app.controller';
 import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { AppService } from './app.service';
+import { ChatModule } from './chat/chat.module';
 
 @Module({
   imports: [
@@ -30,7 +31,7 @@ import { AppService } from './app.service';
 
     // ServeStaticModule serves the Angular frontend from the specified path
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../../', 'frontend/dist/frontend/browser'), // Path to the frontend build output
+      rootPath: join(__dirname, '../../../', 'frontend/dist/frontend/browser'), // Path to the frontend build output
     }),
 
     // TypeOrmModule configures TypeORM with MySQL database connection
@@ -50,6 +51,7 @@ import { AppService } from './app.service';
     MessageModule,
     PostModule,
     ChatRoomModule,
+    ChatModule,
   ],
 
   // Declare the controller responsible for handling incoming requests
@@ -64,4 +66,9 @@ import { AppService } from './app.service';
     },
   ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    // console.log(join(__dirname, '../../../', 'frontend/dist/frontend/browser'));
+    console.log(join(__dirname, '../../../frontend/dist/frontend/browser'));
+  }
+}
