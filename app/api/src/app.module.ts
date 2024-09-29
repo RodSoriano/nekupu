@@ -1,3 +1,5 @@
+import { join } from 'path';
+
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -5,11 +7,17 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { Module } from '@nestjs/common';
 
+import { typeOrmConfiguration } from 'database/config/typeorm.config';
 import { JoiValidationSchema } from './config/joi-validation.config';
+import { CategoryModule } from './category/category.module';
+import { CommentModule } from './comment/comment.module';
+import { ContactModule } from './contact/contact.module';
+import { MessageModule } from './message/message.module';
 import { envConfiguration } from './config/env.config';
 import { AppController } from './app.controller';
+import { UserModule } from './user/user.module';
+import { PostModule } from './post/post.module';
 import { AppService } from './app.service';
-import { join } from 'path';
 
 @Module({
   imports: [
@@ -25,16 +33,7 @@ import { join } from 'path';
     }),
 
     // TypeOrmModule configures TypeORM with MySQL database connection
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: process.env.DB_HOSTNAME,
-      port: +process.env.DB_PORT,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_NAME,
-      autoLoadEntities: true,
-      synchronize: false,
-    }),
+    TypeOrmModule.forRoot(typeOrmConfiguration),
 
     // ThrottlerModule configures rate-limiting to prevent abuse of the API
     ThrottlerModule.forRoot([
@@ -43,6 +42,12 @@ import { join } from 'path';
         limit: 100, // Maximum number of requests allowed within the TTL per IP address
       },
     ]),
+    UserModule,
+    CategoryModule,
+    CommentModule,
+    ContactModule,
+    MessageModule,
+    PostModule,
   ],
 
   // Declare the controller responsible for handling incoming requests
