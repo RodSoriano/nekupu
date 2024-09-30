@@ -9,6 +9,7 @@ import { Module } from '@nestjs/common';
 
 import { typeOrmConfiguration } from 'database/config/typeorm.config';
 import { JoiValidationSchema } from './config/joi-validation.config';
+import { ChatRoomModule } from './chat-room/chat-room.module';
 import { CategoryModule } from './category/category.module';
 import { CommentModule } from './comment/comment.module';
 import { ContactModule } from './contact/contact.module';
@@ -48,6 +49,7 @@ import { AppService } from './app.service';
     ContactModule,
     MessageModule,
     PostModule,
+    ChatRoomModule,
   ],
 
   // Declare the controller responsible for handling incoming requests

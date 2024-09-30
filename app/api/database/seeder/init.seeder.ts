@@ -1,9 +1,11 @@
+import { chatRoomSeeder } from './chat-room.seeder';
 import { categorySeeder } from './category.seeder';
 import dataSource from '../config/typeorm.config';
 import { commentSeeder } from './comment.seeder';
+import { contactSeeder } from './contact.seeder';
 import { postSeeder } from './post.seeder';
 import { userSeeder } from './user.seeder';
-import { contactSeeder } from './contact.seeder';
+import { messageSeeder } from './message.seeder';
 
 const initSeeder = async (): Promise<void> => {
   await dataSource.initialize();
@@ -27,6 +29,16 @@ const initSeeder = async (): Promise<void> => {
   // Contact
   const contactsToCreate = 10;
   await contactSeeder(dataSource, contactsToCreate);
+
+  // ChatRooms
+  // the chat rooms to create has to be less or equal to
+  // the number of users
+  const chatRoomsToCreate = 10;
+  await chatRoomSeeder(dataSource, chatRoomsToCreate);
+
+  // Messages
+  const messagesToCreate = 10;
+  await messageSeeder(dataSource, messagesToCreate);
 
   await dataSource.destroy();
   console.log('Seed completed! 🎉');

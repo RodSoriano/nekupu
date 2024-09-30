@@ -1,6 +1,7 @@
-import { Entity, Column, OneToMany } from 'typeorm';
+import { Entity, Column, OneToMany, OneToOne } from 'typeorm';
 
 import { BaseEntity } from '../../common/entities/base-entity.entity';
+import { ChatRoom } from '../../chat-room/entities/chat-room.entity';
 import { Contact } from '../../contact/entities/contact.entity';
 import { Post } from '../../post/entities/post.entity';
 
@@ -41,4 +42,7 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Post, (post) => post.user)
   posts: Post[];
+
+  @OneToOne(() => ChatRoom, (chatRoom) => chatRoom.user)
+  chatRoom: ChatRoom;
 }

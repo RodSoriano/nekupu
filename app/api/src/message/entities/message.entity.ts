@@ -1,11 +1,15 @@
-// This model will be loaded in memory as an option
+import { Column, Entity, ManyToOne } from 'typeorm';
 
-export class Message {
-  id: number;
+import { BaseEntity } from '../../common/entities/base-entity.entity';
+import { ChatRoom } from '../../chat-room/entities/chat-room.entity';
 
+@Entity()
+export class Message extends BaseEntity {
+  @Column('text', {
+    nullable: false,
+  })
   content: string;
 
-  read: boolean;
-
-  userId: number;
+  @ManyToOne(() => ChatRoom, (chatRoom) => chatRoom.messages)
+  chatRoom: ChatRoom;
 }
