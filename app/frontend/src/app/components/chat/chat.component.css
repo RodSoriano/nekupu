@@ -1,0 +1,26 @@
+.chat {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.chat h2 {
+  text-align: center;
+}
+
+.chat form {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat form div {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.chat form button {
+  align-self: center;
+}
