@@ -1,27 +1,79 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
-import { CreateChatRoomDto } from './dto/create-chat-room.dto';
-import { UpdateChatRoomDto } from './dto/update-chat-room.dto';
+import { ChatRoom } from './entities/chat-room.entity';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class ChatRoomService {
-  create(createChatRoomDto: CreateChatRoomDto) {
-    return { smash: 'esmach' };
+  constructor(
+    @InjectRepository(ChatRoom)
+    private readonly chatRoomRepository: Repository<ChatRoom>,
+    private readonly userService: UserService,
+  ) {}
+
+  // Temporal creation logic of chat room, this will be the created with an authenticaded user
+  async create(userId: number): Promise<ChatRoom> {
+    const user = await this.userService.findById(userId);
+    console.log(user);
+
+    const chatRoom = await this.chatRoomRepository.findOne({
+      where: {
+        user: {
+          id: userId,
+        },
+      },
+    });
+
+    console.log(chatRoom);
+
+    if (chatRoom) {
+      throw new BadRequestException(
+        'There is an existing chat room for this user',
+      );
+    }
+
+    return this.chatRoomRepository.save({
+      user,
+    });
   }
 
-  findAll() {
-    return `This action returns all chatRoom`;
+  async findAll(): Promise<ChatRoom[]> {
+    const chatRooms = await this.chatRoomRepository.find();
+    return chatRooms;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} chatRoom`;
+  async findById(id: number): Promise<ChatRoom> {
+    const chatRoom = await this.chatRoomRepository.findOneBy({ id });
+
+    if (!chatRoom) {
+      throw new NotFoundException(`Chat room with id ${id} was not found`);
+    }
+
+    return chatRoom;
   }
 
-  update(id: number, updateChatRoomDto: UpdateChatRoomDto) {
-    return `This action updates a #${id} chatRoom`;
+  async findByUserId(id: number): Promise<ChatRoom> {
+    const chatRoom = await this.chatRoomRepository.findOne({
+      where: {
+        user: { id },
+      },
+    });
+
+    if (!chatRoom) {
+      throw new NotFoundException(`Chat room with user id ${id} was not found`);
+    }
+
+    return chatRoom;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} chatRoom`;
+  async delete(id: number): Promise<void> {
+    await this.findById(id);
+    await this.chatRoomRepository.delete(id);
   }
 }
