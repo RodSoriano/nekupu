@@ -10,6 +10,14 @@ export class Message extends BaseEntity {
   })
   content: string;
 
-  @ManyToOne(() => ChatRoom, (chatRoom) => chatRoom.messages)
+  @Column({
+    type: 'datetime',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  timestamp: number;
+
+  @ManyToOne(() => ChatRoom, (chatRoom) => chatRoom.messages, {
+    onDelete: 'CASCADE',
+  })
   chatRoom: ChatRoom;
 }
