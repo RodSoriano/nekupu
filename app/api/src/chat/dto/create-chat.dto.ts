@@ -5,6 +5,8 @@ export class JoinChatRoomDtoWs {
   chatRoomId: number;
 }
 
+export class DeleteChatRoomWs extends JoinChatRoomDtoWs {}
+
 export class MessagePayloadDtoWs extends JoinChatRoomDtoWs {
   @IsString()
   @IsNotEmpty()

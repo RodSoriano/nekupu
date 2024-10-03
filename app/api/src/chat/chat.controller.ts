@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   HttpCode,
   HttpStatus,
@@ -45,13 +44,5 @@ export class ChatController {
     @Param('id', ParseIntPipe) id: number,
   ): Promise<ChatRoom> {
     return await this.chatService.findChatRoomByUserId(id);
-  }
-
-  @Delete('/chat-room/:id')
-  @HttpCode(HttpStatus.OK)
-  async deleteChatRoomById(
-    @Param('id', ParseIntPipe) id: number,
-  ): Promise<void> {
-    await this.chatService.deleteChatRoomById(id);
   }
 }
