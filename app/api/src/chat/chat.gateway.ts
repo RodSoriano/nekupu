@@ -7,12 +7,12 @@ import {
   WebSocketGateway,
   WebSocketServer,
 } from '@nestjs/websockets';
-import { ChatService } from './chat.service';
-import { Socket, Server } from 'socket.io';
 import { Logger, UseFilters, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Socket, Server } from 'socket.io';
 
-import { JoinChatRoomDtoWs, MessagePayloadDtoWs } from './dto/create-chat.dto';
 import { BadRequestTransformation } from './filters/bad-request-transformation.filter';
+import { JoinChatRoomDtoWs, MessagePayloadDtoWs } from './dto/create-chat.dto';
+import { ChatService } from './chat.service';
 
 @UseFilters(new BadRequestTransformation())
 @UsePipes(new ValidationPipe({ transform: true }))
@@ -49,8 +49,8 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   @SubscribeMessage('message')
   async handleMessage(
-    client: Socket,
-    payload: MessagePayloadDtoWs,
+    @ConnectedSocket() client: Socket,
+    @MessageBody() payload: MessagePayloadDtoWs,
   ): Promise<void> {
     const messageCreated = await this.chatService.createMessageByChatRoomId(
       payload.message,

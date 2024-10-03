@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { ChatRoom } from 'src/chat-room/entities/chat-room.entity';
+import { ChatRoom } from '../chat-room/entities/chat-room.entity';
 import { ChatRoomService } from '../chat-room/chat-room.service';
 import { Message } from '../message/entities/message.entity';
 import { MessageService } from '../message/message.service';

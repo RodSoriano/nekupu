@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 
 import { ChatRoom } from './entities/chat-room.entity';
 import { ChatRoomService } from './chat-room.service';
-import { UserModule } from 'src/user/user.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   exports: [ChatRoomService],

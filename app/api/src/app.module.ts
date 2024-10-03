@@ -66,9 +66,4 @@ import { ChatModule } from './chat/chat.module';
     },
   ],
 })
-export class AppModule {
-  constructor() {
-    // console.log(join(__dirname, '../../../', 'frontend/dist/frontend/browser'));
-    console.log(join(__dirname, '../../../frontend/dist/frontend/browser'));
-  }
-}
+export class AppModule {}
