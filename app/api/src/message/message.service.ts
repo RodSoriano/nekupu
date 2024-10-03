@@ -26,7 +26,7 @@ export class MessageService {
       },
       take: 200,
       order: {
-        id: 'ASC',
+        id: 'DESC',
       },
     });
 
