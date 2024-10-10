@@ -1,27 +1,80 @@
-# Frontend
+# Structure
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
+The idea behind this project is to be as simple as possible. It will show a _"feel-like"_ static application that will serve as a single page to do multiple interactions in the form of sections, with a twist, basically fitting everything in the `index.html`.
 
-## Development server
+## Secciones:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+*_all this can be subject to change and only is here to have some documentation._*
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+- *Header*:
+  - *Search Bar*:
+    - *Row 1*: Search input
+    - *Row 2*: Suggestions list
+    - *Row 3*: Button (place according to design)
+  - *Logo* (location pending)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- *Main*:
+  - *Motto*:
+    - *Row 1*: Site title
+    - *Row 2*: Description
 
-## Running unit tests
+  - *Posts (GRID)*:
+    - *Post (show)*:
+      - *Row 1*: Image (low resolution to optimize loading)
+      - *Row 2*: Post title
+      - *Row 3*: Short description
+      - *Row 4*: Categories
+      - *Row 5*: Location (City, Country)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  - *Map (box)*:
+    - *Header*:
+      - *Row 1*: Map title
+    - *Box (expandable)*:
+      - *Row 1*: Button to close
+      - *Row 2*: Interactive map
+      - *Row 3*: Place name, option to copy coordinates, open in Google Maps, or show real-time location (to be defined)
+      - *Row 4*: Location pin on the map
 
-## Running end-to-end tests
+  - *Chat*:
+    - *Box (expandable)*:
+      - *Row 1*: Chat box
+      - *Row 2*: "Chat" button
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+      #### Component (chat window):
+      - *Row 1*: Message list
+        #### Component (message):
+        - *Row 1*: User flag and name
+        - *Row 2*: Message
+      - *Row 2*: Input to write message and button to send
 
-## Further help
+  - *Contact*:
+    - *Form*:
+      - Name
+      - Phone
+      - Email
+      - Button to send
+## Components
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `input: icon?, placeholder, type(num, string), name`
+- `list: records->{title, body, id, model}, regex?`
+- `box: height, width, background-color, border, border-color`
+
+## Routes
+
+- `/` (home)
+- `/posts/:id`
+- `/search?title=input1&tag=input2` (need sanitize)
+
+## Scripts
+
+```
+ng serve                               # serve app port 4200
+ng generate component component-name   # generate new component
+ng build                               # build project
+ng test                                # execute test via karma
+ng e2e                                 # execute end-to-end tests
+```
+
+For the last command, you need to first add a package that implements end-to-end testing capabilities.
